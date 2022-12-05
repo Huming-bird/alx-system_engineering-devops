@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -pa | grep -o / | wc -l
+find . -type d -path './*' -print | wc -l
