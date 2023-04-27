@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This code runs a clock pattern
+
+HOUR=0
+
+while [ $HOUR -lt 13 ]; do
+	echo Hour: $HOUR
+	MIN=1
+	while [ $MIN -lt 60 ]; do
+		echo $MIN
+		((MIN++));
+	done
+	((HOUR++));
+done
