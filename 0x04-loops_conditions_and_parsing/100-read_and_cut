@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script reads and cut usr info from /etc/passwd
+
+
+while IFS=: read -r usernm passwd usid gid uidi direc shell; do
+	echo "$usernm:$usid:$direc";
+done < /etc/passwd
