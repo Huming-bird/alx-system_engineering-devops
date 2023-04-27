@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# This code displays the content of the current directory
+# This code write the name of all files after the first dash
 
-ls ./ > text_holder
-for text in $(cat text_holder); do echo $(echo $text | cut -d '-' -f 2-); done
-
+for file in *; do
+    if [[ -f "$file" ]]; then
+        echo "$file" | cut -d'-' -f2-
+    fi
+done
