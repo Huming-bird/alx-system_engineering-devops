@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script prints kills the running process of a running while loop
+
+pid=$(pgrep to_infinity_and_beyond)
+
+kill -15 $pid
+echo "Terminated"
