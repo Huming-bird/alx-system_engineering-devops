@@ -3,6 +3,6 @@
 
 pgrep bash > hold
 
-while read pid; do
-	echo $pid bash;
+while read -r pid; do
+	echo "$pid bash";
 done < hold
