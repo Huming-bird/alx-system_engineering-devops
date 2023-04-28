@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script displays PID longside process name
+
+pgrep bash > hold
+
+while read pid; do
+	echo $pid bash;
+done < hold
