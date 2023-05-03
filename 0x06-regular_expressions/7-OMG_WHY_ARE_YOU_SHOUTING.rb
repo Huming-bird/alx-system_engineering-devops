@@ -3,4 +3,4 @@
 #
 
 
-puts ARGV[0].scan(/\b[A-Z]\b/).join
+puts ARGV[0].scan(/[A-Z]/).join
