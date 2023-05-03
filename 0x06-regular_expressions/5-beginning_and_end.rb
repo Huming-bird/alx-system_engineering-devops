@@ -1,4 +1,4 @@
-#!/usrs/bin/env ruby
+#!/usr/bin/env ruby
 # This script searches for any string starting with h and ending with n
 #
 
