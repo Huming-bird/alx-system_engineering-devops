@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This scripts hold answers to task 4
+
+netstat -l --program
