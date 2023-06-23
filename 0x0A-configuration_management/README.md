@@ -1,0 +1,1 @@
+Server configuration refers to the process of setting up and optimizing a server to ensure it functions properly and efficiently. It involves various tasks and settings that need to be configured to meet specific requirements and ensure smooth operation. Here are some key aspects of server configuration
