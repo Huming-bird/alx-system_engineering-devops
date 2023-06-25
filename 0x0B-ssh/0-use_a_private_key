@@ -1,3 +1,3 @@
 #!/bin/bash
 # this script connects to my server 107.23.109.23
-ssh ubuntu@107.23.109.23 -i ~/.ssh/school
+ssh ubuntu@100.25.182.112 -i ~/.ssh/school
