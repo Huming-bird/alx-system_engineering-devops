@@ -1,6 +1,5 @@
-# this manifest kills a task
+# this manifest kills a process named killmenow
 
-exec { 'killmenow':
-  command => 'pkill killmenow',
-  onlyif  => 'pgrep killmenow',
+exec { 'pkill -f killmenow':
+  path => '/usr/bin/:/usr/local/bin/:/bin/'
 }
