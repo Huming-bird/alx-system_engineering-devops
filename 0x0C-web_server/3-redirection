@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-# this script installs nginx and configures it on a server
-
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-CON_FIG='location /redirect_me {\n\t return 301 https://www.alxafrica.com/; \n\t}'
-sudo sed -i "/listen 80 default_server/a $CON_FIG" /etc/nginx/sites-available/default
-sudo sed -i '/404;/a return 301 https://www.alxafrica.com;'
+# instal Nginx and configure it
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.alxafrica.com/ permanent;' /etc/nginx/sites-available/default
 sudo service nginx restart
