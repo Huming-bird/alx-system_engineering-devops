@@ -12,11 +12,11 @@ file { '/etc/nginx/sites-available/default':
       server_name _;
 
       location / {
-        return 301 https://alxafrica.com/;
+        return 301 https://teosa.tech/;
       }
 
       location /redirect_me {
-        return 301 https://www.youtube.com/;
+        return 301 https://www.alxafrica.com/;
       }
 
       location = / {
