@@ -7,4 +7,5 @@ ufw allow 'Nginx HTTP'
 sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
 CON_FIG='location /redirect_me {\n\t return 301 https://www.alxafrica.com/; \n\t}'
 sudo sed -i "/listen 80 default_server/a $CON_FIG" /etc/nginx/sites-available/default
+sudo sed -i '/404;/a return 301 https://www.alxafrica.com;'
 sudo service nginx restart
