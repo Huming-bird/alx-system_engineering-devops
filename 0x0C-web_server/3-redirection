@@ -4,6 +4,7 @@
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+CON_FIG='location /redirect_me {\n\t return 301 "Moved Permanently"; \n\t}'
+sudo sed -i "/listen 80 default_server/a $CON_FIG" /etc/nginx/sites-available/default
 sudo service nginx restart
