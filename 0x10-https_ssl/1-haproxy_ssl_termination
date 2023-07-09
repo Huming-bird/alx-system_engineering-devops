@@ -33,23 +33,20 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend http
-
-        bind *:80
-        mode http
-        default_backend load_b
-
-backend load_b
-
-        balance roundrobin
-        server web-01 107.23.109.23:80 check
-        server web-02 54.89.194.82:80 check
- frontend Ahmed_web_frontend
-    bind *:443 ssl crt /etc/letsencrypt/live/www.teosa.tech/teosa.tech.pem
+frontend ahmed_web_frontend
+    bind *:80 
     mode http
-    default_backend Ahmed_web_backend
+    redirect
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    http-request set-header X-Forwarded-Proto http
+    default_backend ahmed_web_backend
 
-backend Ahmed_web_backend
+ frontend ahmed_web_frontend-https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.teosa.tech/teosa.tech.pem
+    http-request set-header X-Forwarded-Proto https
+    default_backend ahmed_web_backend
+
+backend ahmed_web_backend
     balance roundrobin
     server 219310-web-01 107.23.109.23:80 check
     server 219310-web-02 54.89.194.82:80 check
