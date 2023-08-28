@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#this script pings a network
 
 if [ $# -eq 0 ]
 then
