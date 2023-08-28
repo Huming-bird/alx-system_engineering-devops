@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# This script holds answers to task 5 in networking
 
 if [ $# -eq 0 ]
 then
