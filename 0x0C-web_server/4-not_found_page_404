@@ -2,15 +2,15 @@
 
 # this script installs and configures nginx
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 
-echo Hello World! > /var/www/html/index.html
-echo Ceci n\'est pas une page > /var/www/html/404.html
+echo Hello World! | sudo tee /var/www/html/index.html
+echo Ceci n\'est pas une page |sudo tee /var/www/html/404.html
 CONFIG1="\ \trewrite ^\/redirect_me https:\/\/www.alxafrica.com\/ permanent;"
 CONFIG2="\ \terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sed -i "/index.nginx-debian.html;/ a $CONFIG2" /etc/nginx/sites-available/default
-sed -i "/index.nginx-debian.html;/ a $CONFIG1" /etc/nginx/sites-available/default
-ufw allow 80
-ufw allow 443
+sudo sed -i "/index.nginx-debian.html;/ a $CONFIG2" /etc/nginx/sites-available/default
+sudo sed -i "/index.nginx-debian.html;/ a $CONFIG1" /etc/nginx/sites-available/default
+sudo ufw allow 80
+sudo ufw allow 443
 sudo service nginx restart
