@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-# Configure your Nginx server to have a custom 404 page
-# that contains the string Ceci n'est pas une page
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.html
-st="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.alxafrica.com permanent;"
-sudo sed -i "s/server_name _;/$st/" /etc/nginx/sites-enabled/default
 
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
-st="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sudo sed -i "s/listen 80 default_server;/$st/" /etc/nginx/sites-enabled/default
+# this script installs and configures nginx
+
+apt-get -y update
+apt-get -y install nginx
+
+echo Hello World! > /var/www/html/index.html
+echo Ceci n\'est pas une page > /var/www/html/404.html
+CONFIG1="\ \trewrite ^\/redirect_me https:\/\/www.alxafrica.com\/ permanent;"
+CONFIG2="\ \terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sed -i "/index.nginx-debian.html;/ a $CONFIG2" /etc/nginx/sites-available/default
+sed -i "/index.nginx-debian.html;/ a $CONFIG1" /etc/nginx/sites-available/default
+ufw allow 80
+ufw allow 443
 sudo service nginx restart
