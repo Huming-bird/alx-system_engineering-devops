@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # this script allows for port forwarding
 
-sudo ufw route allow proto tcp from any to any port 8080 to localhost port 80
+sudo ufw route allow proto tcp from any to any port 8080 to 54.174.125.206 port 80
