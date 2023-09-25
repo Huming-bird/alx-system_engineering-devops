@@ -4,8 +4,8 @@
 import requests
 import sys
 
-def main():
-    """ this fnc will be implemented when running this script """
+
+if __name__ == '__main__':
     employeeId = sys.argv[1]
     baseUrl = "https://jsonplaceholder.typicode.com/users"
     url = baseUrl + "/" + employeeId
@@ -24,9 +24,8 @@ def main():
             done_tasks.append(task)
             done += 1
 
-    sumTask = len(tasks)
-
-    print(f"Employee {employeeName} is done with tasks({done}/{sumTask}")
+    print("Employee {} is done with tasks({}/{}):"
+          .format(employeeName, done, len(tasks)))
 
     for task in done_tasks:
         print("\t {}".format(task.get('title')))
