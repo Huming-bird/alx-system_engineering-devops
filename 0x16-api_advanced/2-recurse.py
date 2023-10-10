@@ -10,7 +10,7 @@ import requests
 def recurse(subreddit, hot_list=[], after="", count=0):
     """
     Returns a list of titles of all hot posts on a particular subreddit.
-    If no results are found for the given subreddit, the function 
+    If no results are found for the given subreddit, the function
     return None
     """
 
@@ -26,14 +26,14 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     }
 
     response = get(url, headers=headers, params=params, allow_redirects=False)
-    
+
     if response.status_code == 404:
         return None
 
     results = response.json().get("data")
     after = results.get("after")
     count += results.get("dist")
-    
+
     hot_list = [i.get("data").get("title") for i in results.get("children")]
 
     if after is not None:
