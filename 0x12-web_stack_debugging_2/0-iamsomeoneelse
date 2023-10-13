@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to display whoami
+
+su "$1" -c "whoami"
