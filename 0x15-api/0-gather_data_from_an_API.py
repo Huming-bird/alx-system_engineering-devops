@@ -5,25 +5,26 @@ and filters the data based on an argument passed to the script.
 The argument is the employee ID, and the output should display the employee
 name and the tasks the employee completed.
 """
-import requests
+
+import json
 import sys
+from urllib import request
 
-if __name__ == "__main__":
-    eid = sys.argv[1]
-    name = requests.get("http://jsonplaceholder.typicode.com/users/{}"
-                        .format(eid)).json().get("name")
-    total_tasks = 0
-    done_tasks = []
-    r = requests.get("http://jsonplaceholder.typicode.com/todos").json()
 
-    for task in r:
-        if (task.get("userId") == int(eid)):
-            total_tasks += 1
-            if (task.get("completed")):
-                done_tasks.append(task.get("title"))
+if __name__ == '__main__':
+    url1 = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        sys.argv[1])
+    url2 = "https://jsonplaceholder.typicode.com/users/{}".format(sys.argv[1])
 
-    print("Employee {} is done with tasks({:d}/{:d}):"
-          .format(name, len(done_tasks), total_tasks))
+    resp1 = request.urlopen(url1)
+    resp2 = request.urlopen(url2)
 
-    for item in done_tasks:
-        print("\t {}".format(item))
+    user = json.loads(resp2.read())
+    todos = json.loads(resp1.read())
+
+    done = (int(todo['completed']) for todo in todos)
+    print("Employee {} is done with tasks({}/{}):".format(
+        user.get('name'), sum(done), len(todos)))
+    for todo in todos:
+        if todo['completed']:
+            print("\t {}".format(todo.get("title")))
