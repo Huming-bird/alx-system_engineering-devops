@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# this script sends a HUP signal to a gunicorn master process
+
+GUNI=$(ps auxf | grep gunicorn | grep " Ss " | awk '{print $2}')
+
+kill -s HUP $GUNI
